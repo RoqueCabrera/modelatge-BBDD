@@ -1,0 +1,49 @@
+EJERCICIOS USAirFlights2:
+
+
+1) 
+SELECT COUNT(flight ID)
+FROM flights;
+
+2)
+SELECT Origin, AVG(ArrDelay) as Average_arrivalydelay, AVG(DepDelay) as Average_departures
+FROM Flights
+GROUP BY Origin;
+
+3)
+Select Origin, colYear, colMonth, AVG(ArrDelay) as Average_arrival_delay
+From Flights
+Group By Origin, colYear, colMonth
+ORDER BY Origin ASC;
+
+4)
+Select City, colYear, colMonth, AVG(ArrDelay) as Average_arrival_delay
+From Flights
+JOIN USAirports
+    ON Flights.Origin = USAirports.IATA
+Group By City, colYear, colMonth
+ORDER BY City ASC
+;
+
+5)
+Select UniqueCarrier, colYear, colMonth, SUM(Cancelled) as Total_cancelled
+From Flights
+Group By UniqueCarrier, colYear, colMonth
+ORDER BY Total_cancelled DESC
+;
+
+6)
+Select TailNum, SUM(Distance) as Total_distance
+From Flights
+Group By TailNum
+ORDER BY Total_distance DESC
+LIMIT 10 OFFSET 2
+;
+
+7)
+Select UniqueCarrier, AVG(ArrDelay) as Average_delay
+From Flights
+GROUP BY UniqueCarrier
+HAVING Average_delay>10
+ORDER BY Average_delay DESC
+;
